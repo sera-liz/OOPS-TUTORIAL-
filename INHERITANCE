@@ -1,123 +1,40 @@
-import java.util.Scanner; // Import the Scanner class for user input
+import java.time.Year;
 
-// Employee.java
-class Employee {
-    String name;
-    int age;
-    String phoneNumber;
-    String address;
-    double salary;
-
-    // Constructor for Employee
-    public Employee(String name, int age, String phoneNumber, String address, double salary) {
-        this.name = name;
-        this.age = age;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.salary = salary;
-    }
-
-    public void printSalary() {
-        System.out.println("Salary: " + salary);
-    }
-
-    // Method to display common Employee details
-    public void printEmployeeDetails() {
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
-        System.out.println("Phone Number: " + phoneNumber);
-        System.out.println("Address: " + address);
-        printSalary();
-    }
-}
-
-// Officer.java
-class Officer extends Employee {
-    String specialization;
+public class vehicle {
+    
+    protected String brand;
+    protected String model;
+    protected int year;
+    protected double basePrice;
 
     
-    public Officer(String name, int age, String phoneNumber, String address, double salary, String specialization) {
-        super(name, age, phoneNumber, address, salary); 
-        this.specialization = specialization;
+    public vehicle(String brand, String model, int year, double basePrice) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.basePrice = basePrice;
     }
 
-   
-    public void printOfficerDetails() {
-        System.out.println("\n--- Officer Details ---");
-        printEmployeeDetails(); // Call to print common employee details
-        System.out.println("Specialization: " + specialization);
-    }
-}
-
-
-class Manager extends Employee {
-    String department;
-
-   
-    public Manager(String name, int age, String phoneNumber, String address, double salary, String department) {
-        super(name, age, phoneNumber, address, salary); // Call to Employee class constructor
-        this.department = department;
+    
+    public void displayInfo() {
+        System.out.println("Vehicle Information:");
+        System.out.println("Brand:" + brand);
+        System.out.println("Model:" + model);
+        System.out.println("year: "+ year);
+        System.out.println("Base Price:$" + basePrice);
     }
 
-   
-    public void printManagerDetails() {
-        System.out.println("\n--- Manager Details ---");
-        printEmployeeDetails(); 
-        System.out.println("Department: " + department);
+    
+    public double calculateResaleValue() {
+        int currentYear = Year.now().getValue();
+        int age = currentYear - year;
+        double resaleValue = basePrice * Math.pow(0.85, age);
+        return resaleValue;
     }
-}
 
-
-public class Main {
+    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); // Create a Scanner object
-
-       
-        System.out.println("Enter Officer Details:");
-        System.out.print("Name: ");
-        String officerName = scanner.nextLine();
-        System.out.print("Age: ");
-        int officerAge = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Phone Number: ");
-        String officerPhone = scanner.nextLine();
-        System.out.print("Address: ");
-        String officerAddress = scanner.nextLine();
-        System.out.print("Salary: ");
-        double officerSalary = scanner.nextDouble();
-        scanner.nextLine(); 
-        System.out.print("Specialization: ");
-        String officerSpecialization = scanner.nextLine();
-
-       
-        Officer officer = new Officer(officerName, officerAge, officerPhone, officerAddress, officerSalary, officerSpecialization);
-
-       
-        System.out.println("\nEnter Manager Details:");
-        System.out.print("Name: ");
-        String managerName = scanner.nextLine();
-        System.out.print("Age: ");
-        int managerAge = scanner.nextInt();
-        scanner.nextLine(); 
-        System.out.print("Phone Number: ");
-        String managerPhone = scanner.nextLine();
-        System.out.print("Address: ");
-        String managerAddress = scanner.nextLine();
-        System.out.print("Salary: ");
-        double managerSalary = scanner.nextDouble();
-        scanner.nextLine(); 
-        System.out.print("Department: ");
-        String managerDepartment = scanner.nextLine();
-
-       
-        Manager manager = new Manager(managerName, managerAge, managerPhone, managerAddress, managerSalary, managerDepartment);
-
-        
-        officer.printOfficerDetails();
-
-       
-        manager.printManagerDetails();
-
-        scanner.close(); // Close the scanner
+        vehicle myvehicle = new vehicle("Toyota", "Camry", 2018, 25000);
+        myvehicle.displayInfo();
+        System.out.printf("Resale Value: $%.2f\n", myvehicle.calculateResaleValue());
     }
-}
