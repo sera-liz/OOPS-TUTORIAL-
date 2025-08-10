@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+class CommonElements {
+    public static void main(String[] args) {
+        int i, j;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter size of arrays: ");
+        int size = sc.nextInt();
+
+        int first[] = new int[size];
+        int second[] = new int[size];
+
+        System.out.println("Enter first array:");
+        for (i = 0; i < size; i++) {
+            first[i] = sc.nextInt();
+        }
+
+        System.out.println("Enter second array:");
+        for (i = 0; i < size; i++) {
+            second[i] = sc.nextInt();
+        }
+
+        System.out.println("Common elements:");
+        for (i = 0; i < size; i++) {
+            for (j = 0; j < size; j++) {
+                if (first[i] == second[j]) {
+                    System.out.print(first[i] + " ");
+                    break; // move to next element in first array
+                }
+            }
+        }
+    }
+}
