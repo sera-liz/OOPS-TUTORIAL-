@@ -1,0 +1,54 @@
+
+import java.util.Scanner;
+
+class ReverseRows {
+    public static void main(String args[]) {
+        int i, j;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of rows: ");
+        int rows = sc.nextInt();
+
+        System.out.print("Enter number of columns: ");
+        int cols = sc.nextInt();
+
+        int mat[][] = new int[rows][cols];
+
+        System.out.println("Enter the elements of the matrix:");
+        for (i = 0; i < rows; i++) {
+            for (j = 0; j < cols; j++) {
+                mat[i][j] = sc.nextInt();
+            }
+        }
+
+        // Print original matrix
+        System.out.println("Original matrix:");
+        for (i = 0; i < rows; i++) {
+            for (j = 0; j < cols; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Reverse each row
+        for (i = 0; i < rows; i++) {
+            int start = 0, end = cols - 1;
+            while (start < end) {
+                int temp = mat[i][start];
+                mat[i][start] = mat[i][end];
+                mat[i][end] = temp;
+                start++;
+                end--;
+            }
+        }
+
+        // Print reversed matrix
+        System.out.println("Matrix after reversing each row:");
+        for (i = 0; i < rows; i++) {
+            for (j = 0; j < cols; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
