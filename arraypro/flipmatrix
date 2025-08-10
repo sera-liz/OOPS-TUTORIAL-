@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+class FlipMatrix {
+    public static void main(String args[]) {
+        int i, j;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of rows: ");
+        int r = sc.nextInt();
+        System.out.print("Enter number of columns: ");
+        int c = sc.nextInt();
+
+        int mat[][] = new int[r][c];
+
+        System.out.println("Enter the elements of the matrix:");
+        for (i = 0; i < r; i++) {
+            for (j = 0; j < c; j++) {
+                mat[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Original Matrix:");
+        for (i = 0; i < r; i++) {
+            for (j = 0; j < c; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Swap first row with last row
+        for (j = 0; j < c; j++) {
+            int temp = mat[0][j];
+            mat[0][j] = mat[r - 1][j];
+            mat[r - 1][j] = temp;
+        }
+
+        // Swap first column with last column
+        for (i = 0; i < r; i++) {
+            int temp = mat[i][0];
+            mat[i][0] = mat[i][c - 1];
+            mat[i][c - 1] = temp;
+        }
+
+        System.out.println("Matrix after flipping first row/column with last row/column:");
+        for (i = 0; i < r; i++) {
+            for (j = 0; j < c; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
