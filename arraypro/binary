@@ -1,0 +1,55 @@
+
+import java.util.Scanner;
+
+class BinarySearch {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n, k, l = 0, mid = 0, temp, i, k1, j, found = 0;
+        int arr[] = new int[50];
+
+        System.out.print("How many elements do you want to enter?  ");
+        n = sc.nextInt();
+
+        System.out.println("Enter the elements: ");
+        for (i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+
+        /* Sorting using bubble sort */
+        for (i = 0; i < n - 1; i++) {
+            for (j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.print("Sorted array: ");
+        for (i = 0; i < n; i++)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+
+        System.out.print("Enter element to find: ");
+        k1 = sc.nextInt();
+
+        /* Binary search */
+        int u = n - 1;
+        while (l <= u) {
+            mid = (l + u) / 2;
+            if (arr[mid] == k1) {
+                found = 1;
+                break;
+            } else if (k1 < arr[mid]) {
+                u = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+
+        if (found == 0)
+            System.out.println("Value not present in the array.");
+        else
+            System.out.println("Value found at position " + mid);
+    }
+}
