@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+class MatrixMultiply {
+    public static void main(String args[]) {
+        int i, j, k;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of rows of first matrix: ");
+        int r1 = sc.nextInt();
+        System.out.print("Enter number of columns of first matrix: ");
+        int c1 = sc.nextInt();
+
+        System.out.print("Enter number of rows of second matrix: ");
+        int r2 = sc.nextInt();
+        System.out.print("Enter number of columns of second matrix: ");
+        int c2 = sc.nextInt();
+
+        if (c1 != r2) {
+            System.out.println("Matrix multiplication not possible!");
+            return;
+        }
+
+        int mat1[][] = new int[r1][c1];
+        int mat2[][] = new int[r2][c2];
+        int prod[][] = new int[r1][c2];
+
+        System.out.println("Enter elements of first matrix:");
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c1; j++) {
+                mat1[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Enter elements of second matrix:");
+        for (i = 0; i < r2; i++) {
+            for (j = 0; j < c2; j++) {
+                mat2[i][j] = sc.nextInt();
+            }
+        }
+
+        // Multiplication
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c2; j++) {
+                prod[i][j] = 0;
+                for (k = 0; k < c1; k++) {
+                    prod[i][j] += mat1[i][k] * mat2[k][j];
+                }
+            }
+        }
+
+        System.out.println("Product of the two matrices:");
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c2; j++) {
+                System.out.print(prod[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
